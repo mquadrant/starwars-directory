@@ -1,11 +1,11 @@
 <template>
   <div class="hero-image">
     <div class="logo">
-      <img src="./../assets/logo.png" width="90px" />
+      <img src="./../../assets/logo.png" width="90px" />
     </div>
     <div class="hero-text">
       <div class="mx-auto content-logo">
-        <img src="./../assets/logo.png" width="90px" />
+        <img src="./../../assets/logo.png" width="90px" />
         <span style="font-size:28px;font-weight:900">Directory</span>
       </div>
       <p class="hero-subtext" style="font-size:17px;font-weight:100">
@@ -27,7 +27,7 @@ export default {
 
 <style scoped>
 .hero-image {
-  background-image: url("../assets/hero-banner.jpg");
+  background-image: url("../../assets/hero-banner.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
