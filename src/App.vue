@@ -1,20 +1,22 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div id="app" class="w-full">
+    <Banner />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-import "./assets/css/main.css";
-
+import Banner from "./components/Banner";
 export default {
   name: "app",
-  components: {
-    HelloWorld
-  }
+  components: { Banner }
 };
 </script>
 
-<style></style>
+<style src="./css/main.css">
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
