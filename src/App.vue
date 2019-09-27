@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Banner from "./components/Banner";
+import Banner from "./components/layouts/Banner";
 export default {
   name: "app",
   components: { Banner }
