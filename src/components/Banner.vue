@@ -8,12 +8,12 @@
         <img src="./../assets/logo.png" width="90px" />
         <span style="font-size:28px;font-weight:900">Directory</span>
       </div>
-      <p class="hero-subtext" style="font-size:16px;font-weight:100">
+      <p class="hero-subtext" style="font-size:17px;font-weight:100">
         Find your favorite Characters, Films, Species,
         <br />Starships and Planets
       </p>
       <div class="input-icons">
-        <i class="fa fa-facebook icon"></i>
+        <font-awesome-icon :icon="['fas','search']" class="search-icon" />
         <input class type="text" placeholder="Enter a search term" />
       </div>
     </div>
@@ -44,7 +44,7 @@ export default {
 }
 .hero-subtext {
   margin-top: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 .logo img {
   position: absolute;
@@ -79,13 +79,18 @@ input[type="text"]::placeholder {
   font-size: 13px;
   color: #3e464c;
 }
-.input-icons i {
-  position: absolute;
-}
-
 .input-icons {
+  position: relative;
   width: 100%;
   margin-bottom: 10px;
+}
+.input-icons .search-icon {
+  position: absolute;
+  color: #3e464c;
+  font-size: 18px;
+  font-weight: 0px;
+  bottom: 10px;
+  left: 40px;
 }
 
 .icon {
