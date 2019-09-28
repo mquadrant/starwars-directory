@@ -6,6 +6,7 @@
       <PlanetSection />
       <CharacterSection />
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -14,9 +15,16 @@ import Banner from "./components/layouts/Banner";
 import StarshipSection from "./components/layouts/Starship";
 import PlanetSection from "./components/layouts/Planet";
 import CharacterSection from "./components/layouts/Character";
+import Footer from "./components/layouts/Footer";
 export default {
   name: "app",
-  components: { Banner, StarshipSection, PlanetSection, CharacterSection }
+  components: {
+    Banner,
+    StarshipSection,
+    PlanetSection,
+    CharacterSection,
+    Footer
+  }
 };
 </script>
 
