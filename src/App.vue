@@ -3,6 +3,7 @@
     <Banner />
     <div class="container mx-auto px-4">
       <StarshipSection />
+      <PlanetSection />
     </div>
   </div>
 </template>
@@ -10,9 +11,10 @@
 <script>
 import Banner from "./components/layouts/Banner";
 import StarshipSection from "./components/layouts/Starship";
+import PlanetSection from "./components/layouts/Planet";
 export default {
   name: "app",
-  components: { Banner, StarshipSection }
+  components: { Banner, StarshipSection, PlanetSection }
 };
 </script>
 
