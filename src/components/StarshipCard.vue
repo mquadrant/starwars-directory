@@ -6,10 +6,12 @@
         <p class="title">{{starship.title}}</p>
         <p class="description">{{starship.description}}</p>
 
-        <button>
-          Read More &nbsp;
-          <font-awesome-icon :icon="['fas','arrow-right']" class="search-icon" />
-        </button>
+        <router-link v-bind:to="'/starship/'+starship.id">
+          <button>
+            Read More &nbsp;
+            <font-awesome-icon :icon="['fas','arrow-right']" class="search-icon" />
+          </button>
+        </router-link>
       </div>
     </div>
   </div>
