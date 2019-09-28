@@ -1,10 +1,16 @@
 <template>
   <div id="app" class="w-full">
     <Banner />
-    <div class="container mx-auto px-4">
+    <div class="container mx-auto px-4" style="text-align: center">
       <StarshipSection />
+      <router-link to="starships">
+        <button class="view-more">VIEW MORE</button>
+      </router-link>
       <PlanetSection />
       <CharacterSection />
+      <router-link to="characters">
+        <button class="view-more">VIEW MORE</button>
+      </router-link>
     </div>
   </div>
 </template>
@@ -25,43 +31,16 @@ export default {
 };
 </script>
 
-<style src="../css/main.css"/>
 <style>
-body,
-html {
-  height: 100%;
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-.section {
-  margin-top: 50px;
-  margin-bottom: 20px;
+.view-more {
   text-align: center;
-}
-.section .section-title {
-  font-size: 24px;
-  color: #3e464c;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 30px;
-}
-h2.section-title {
-  display: inline-block;
-  padding-bottom: 8px;
-  position: relative;
-  margin: 0 auto;
-}
-h2.section-title:before {
-  content: "";
-  position: absolute;
-  width: 50%;
-  height: 2px;
-  bottom: 0;
-  left: 25%;
-  border-bottom: 4px solid #3e464c;
-}
-button,
-button:focus {
+  font-size: 12px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 10px 20px;
+  width: 30%;
+  margin-top: 10px;
+  margin-bottom: 10px;
   outline: none;
 }
 </style>
