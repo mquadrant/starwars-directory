@@ -27,6 +27,7 @@ export default {
 .card {
   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
   max-width: 320px;
+  min-width: 300px;
   margin: auto;
   margin-bottom: 30px;
 }
@@ -38,6 +39,7 @@ export default {
 .outer {
   position: absolute;
   width: 320px;
+  min-width: 300px;
   min-height: 145px;
   background: #fafafa;
   margin-left: 5px;
@@ -56,7 +58,6 @@ export default {
 
 button {
   border: none;
-  outline: 0;
   display: block;
   padding: 8px 14px;
   color: #3e464c;
@@ -67,6 +68,7 @@ button {
   font-size: 12px;
   margin-top: 10px;
   float: right;
+  outline: none;
 }
 
 a {
