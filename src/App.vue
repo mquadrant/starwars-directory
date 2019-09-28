@@ -51,4 +51,8 @@ h2.section-title:before {
   left: 25%;
   border-bottom: 4px solid #3e464c;
 }
+button,
+button:focus {
+  outline: none;
+}
 </style>
