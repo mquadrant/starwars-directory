@@ -1,15 +1,15 @@
 <template>
   <div>
     <Banner />
-    <div class="container mx-auto px-4">
+    <div class="container mx-auto px-4" style="text-align: center">
       <StarshipSection v-bind:starships="visibleStarship" v-bind:currentPage="currentPage" />
-    </div>
-    <div>
       <Pagination
         v-bind:starships="starships"
+        v-bind:start="start"
         v-on:page:update="updatePage"
         v-bind:currentPage="currentPage"
         v-bind:pageSize="pageSize"
+        v-bind:visibleStarship="visibleStarship"
       />
     </div>
   </div>
@@ -32,67 +32,67 @@ export default {
         },
         {
           id: 1,
-          title: "Ghost 2",
+          title: "Ghost 1",
           description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit."
         },
         {
           id: 2,
-          title: "Ghost 3",
+          title: "Ghost 2",
           description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit."
         },
         {
           id: 3,
-          title: "Ghost 4",
+          title: "Ghost 3",
           description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit."
         },
         {
           id: 4,
-          title: "Ghost 5",
+          title: "Ghost 4",
           description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit."
         },
         {
           id: 5,
-          title: "Ghost 6",
+          title: "Ghost 5",
           description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit."
         },
         {
           id: 6,
-          title: "Ghost 7",
+          title: "Ghost 6",
           description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit."
         },
         {
           id: 7,
-          title: "Ghost 8",
+          title: "Ghost 7",
           description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit."
         },
         {
           id: 8,
-          title: "Ghost 9",
+          title: "Ghost 8",
           description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit."
         },
         {
           id: 9,
-          title: "Ghost 10",
+          title: "Ghost 9",
           description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit."
         },
         {
           id: 10,
-          title: "Ghost 11",
+          title: "Ghost 10",
           description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit."
         },
         {
           id: 11,
-          title: "Ghost 12",
+          title: "Ghost 11",
           description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit."
         }
@@ -100,6 +100,7 @@ export default {
       nextId: 12,
       currentPage: 0,
       pageSize: 9,
+      start: 0,
       visibleStarship: []
     };
   },
@@ -118,9 +119,9 @@ export default {
       this.updateVisibleStarship();
     },
     updateVisibleStarship() {
-      const start = this.currentPage * this.pageSize,
-        end = start + this.pageSize;
-      this.visibleStarship = this.starships.slice(start, end);
+      this.start = this.currentPage * this.pageSize;
+      const end = this.start + this.pageSize;
+      this.visibleStarship = this.starships.slice(this.start, end);
       //if we have 0 visible starship , go back a page
       if (this.visibleStarship.length === 0 && this.currentPage > 0) {
         this.updatePage(this.currentPage - 1);
