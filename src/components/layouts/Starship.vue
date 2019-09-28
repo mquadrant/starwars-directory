@@ -2,12 +2,11 @@
   <div class="section starship-section">
     <h2 class="section-title">Popular Starships</h2>
     <div class="starship-cards">
-      <StarshipCard />
-      <StarshipCard />
-      <StarshipCard />
-      <StarshipCard />
-      <StarshipCard />
-      <StarshipCard />
+      <StarshipCard
+        v-bind:starship="starship"
+        v-bind:key="starship.id"
+        v-for="starship in starships"
+      />
     </div>
   </div>
 </template>
@@ -16,7 +15,8 @@
 import StarshipCard from "./../StarshipCard";
 export default {
   name: "StarshipSection",
-  components: { StarshipCard }
+  components: { StarshipCard },
+  props: ["starships"]
 };
 </script>
 
