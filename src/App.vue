@@ -1,28 +1,15 @@
 <template>
   <div id="app" class="w-full">
-    <Banner />
-    <div class="container mx-auto px-4">
-      <StarshipSection />
-      <PlanetSection />
-      <CharacterSection />
-    </div>
+    <router-view />
     <Footer />
   </div>
 </template>
 
 <script>
-import Banner from "./components/layouts/Banner";
-import StarshipSection from "./components/layouts/Starship";
-import PlanetSection from "./components/layouts/Planet";
-import CharacterSection from "./components/layouts/Character";
 import Footer from "./components/layouts/Footer";
 export default {
   name: "app",
   components: {
-    Banner,
-    StarshipSection,
-    PlanetSection,
-    CharacterSection,
     Footer
   }
 };
