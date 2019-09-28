@@ -1,6 +1,6 @@
 <template>
   <div v-if="totalPages() > 0" class="pagination-wrapper">
-    {{start}} - {{start+visibleStarship.length}} of {{starships.length}}&nbsp;
+    {{start}} - {{start+visibleData.length}} of {{data.length}}&nbsp;
     <div class="pagination-item">
       <span
         v-bind:class="{'link-end':!showPreviousLink()}"
@@ -22,20 +22,13 @@
 <script>
 export default {
   name: "Pagination",
-  props: [
-    "starships",
-    "currentPage",
-    "pageSize",
-    "visibleStarship",
-    "start",
-    "end"
-  ],
+  props: ["data", "currentPage", "pageSize", "visibleData", "start", "end"],
   methods: {
     updatePage(pageNumber) {
       this.$emit("page:update", pageNumber);
     },
     totalPages() {
-      return Math.ceil(this.starships.length / this.pageSize);
+      return Math.ceil(this.data.length / this.pageSize);
     },
     showPreviousLink() {
       return this.currentPage == 0 ? false : true;
