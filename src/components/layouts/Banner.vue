@@ -1,7 +1,9 @@
 <template>
   <div class="hero-image">
     <div class="logo">
-      <img src="./../../assets/logo.png" width="90px" />
+      <router-link to="/">
+        <img src="./../../assets/logo.png" width="90px" />
+      </router-link>
     </div>
     <div class="hero-text">
       <div class="mx-auto content-logo">
