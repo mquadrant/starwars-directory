@@ -4,12 +4,12 @@
     <div class="container mx-auto px-4" style="text-align: center">
       <StarshipSection v-bind:starships="visibleStarship" v-bind:currentPage="currentPage" />
       <Pagination
-        v-bind:starships="starships"
+        v-bind:data="starships"
         v-bind:start="start"
         v-on:page:update="updatePage"
         v-bind:currentPage="currentPage"
         v-bind:pageSize="pageSize"
-        v-bind:visibleStarship="visibleStarship"
+        v-bind:visibleData="visibleStarship"
       />
     </div>
   </div>
@@ -97,7 +97,6 @@ export default {
             "Lorem ipsum dolor sit amet consectetur adipisicing elit."
         }
       ],
-      nextId: 12,
       currentPage: 0,
       pageSize: 9,
       start: 0,
