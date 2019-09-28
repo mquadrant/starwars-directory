@@ -1,12 +1,10 @@
 <template>
   <div class="card">
-    <img src="./../assets/starship-2.jpg" alt="Ghost" style="width:100%" />
+    <img src="./../assets/starship-2.jpg" alt="Ghost" style="width:100%; height:200px;" />
     <div class="inner">
       <div class="outer">
-        <p class="title">Ghost</p>
-        <p
-          class="description"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum optio iusto, rerum deleniti quidem voluptate quia unde ea illo minima, ex eveniet cum.</p>
+        <p class="title">{{starship.title}}</p>
+        <p class="description">{{starship.description}}</p>
 
         <button>
           Read More &nbsp;
@@ -19,7 +17,8 @@
 
 <script>
 export default {
-  name: "StarshipCard"
+  name: "StarshipCard",
+  props: ["starship"]
 };
 </script>
 
