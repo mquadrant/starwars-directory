@@ -2,8 +2,8 @@
   <div class="section planet-section">
     <h2 class="section-title">Popular Planets</h2>
     <div class="planet-cards">
-      <vue-glide>
-        <vue-glide-slide v-for="i in 6" :key="i">
+      <vue-glide :bullet="true" :rewind="false">
+        <vue-glide-slide v-for="i in 3" :key="i">
           <PlanetCard />
         </vue-glide-slide>
       </vue-glide>
