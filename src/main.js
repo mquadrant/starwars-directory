@@ -3,7 +3,12 @@ import App from "./App.vue";
 import router from "./router";
 //FontAwesome Library
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSearch, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSearch,
+  faArrowRight,
+  faChevronLeft,
+  faChevronRight
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 //VueGlide Library
 import VueGlide from "vue-glide-js";
@@ -11,7 +16,7 @@ import "vue-glide-js/dist/vue-glide.css";
 
 Vue.use(VueGlide);
 
-library.add(faSearch, faArrowRight);
+library.add(faSearch, faArrowRight, faChevronLeft, faChevronRight);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.config.productionTip = false;
