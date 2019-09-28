@@ -7,7 +7,8 @@ import {
   faSearch,
   faArrowRight,
   faChevronLeft,
-  faChevronRight
+  faChevronRight,
+  faSortDown
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 //VueGlide Library
@@ -16,7 +17,7 @@ import "vue-glide-js/dist/vue-glide.css";
 
 Vue.use(VueGlide);
 
-library.add(faSearch, faArrowRight, faChevronLeft, faChevronRight);
+library.add(faSearch, faArrowRight, faChevronLeft, faChevronRight, faSortDown);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.config.productionTip = false;
