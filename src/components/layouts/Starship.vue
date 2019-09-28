@@ -9,6 +9,7 @@
       <StarshipCard />
       <StarshipCard />
     </div>
+    <button class="view-more">VIEW MORE</button>
   </div>
 </template>
 
@@ -24,5 +25,17 @@ export default {
 .starship-cards {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.view-more {
+  text-align: center;
+  font-size: 12px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 10px 20px;
+  width: 30%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  outline: none;
 }
 </style>
