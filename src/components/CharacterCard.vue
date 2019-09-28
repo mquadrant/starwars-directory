@@ -10,10 +10,15 @@
           <h6 class="card-subtitle">
             <em>Son of Anakin</em>
           </h6>
-          <div
-            class="card-text"
-          >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi, magni. Omnis libero, repudiandae dolor aliquid aut aspernatur recusandae necessitatibus iusto eum modi repellat earum sint cumque porro nesciunt</div>
-          <a href="#" class="card-readmore">Read More</a>
+          <div class="card-text">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Sequi, magni. Omnis libero, repudiandae dolor aliquid aut aspernatur recusandae
+            aliquid aut aspernatur recusandae recusand...
+            <a
+              href="#"
+              class="card-readmore"
+            >Read More</a>
+          </div>
         </div>
       </div>
     </div>
@@ -58,16 +63,10 @@ export default {
   display: inline-block;
   margin-top: 30px;
   font-size: 12px;
-  line-height: 1.5em;
+  line-height: 1.6em;
   color: #3e464c;
   font-weight: 50;
   width: 200px;
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical;
 }
 .card-readmore {
   font-size: 12px;
