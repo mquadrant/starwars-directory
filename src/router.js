@@ -21,6 +21,11 @@ export default new Router({
       path: "/characters",
       name: "Characters",
       component: () => import(/* webpackChunkName: "about" */ "./views/Characters.vue")
+    },
+    {
+      path: "/starship/:shipId",
+      name: "SingleStarship",
+      component: () => import(/* webpackChunkName: "about" */ "./views/SingleStarship.vue")
     }
   ]
 });
