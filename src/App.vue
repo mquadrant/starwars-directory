@@ -1,6 +1,7 @@
 <template>
   <div id="app" class="w-full">
-    <router-view />
+    <router-view :key="$route.fullPath" />
+
     <Footer />
   </div>
 </template>
