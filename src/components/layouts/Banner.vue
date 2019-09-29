@@ -2,7 +2,7 @@
   <div class="hero-image">
     <div class="logo">
       <router-link to="/">
-        <img src="./../../assets/logo.png" width="90px" />
+        <img src="./../../assets/logo.png" width="100px" />
       </router-link>
     </div>
     <div class="hero-text">
