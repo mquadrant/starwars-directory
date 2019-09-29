@@ -4,7 +4,7 @@
     <div class="starship-cards">
       <StarshipCard
         v-bind:starship="starship"
-        v-bind:key="starship.id"
+        v-bind:key="starship.name"
         v-for="starship in starships"
       />
     </div>
@@ -16,7 +16,8 @@ import StarshipCard from "./../StarshipCard";
 export default {
   name: "StarshipSection",
   components: { StarshipCard },
-  props: ["starships"]
+  props: ["starships"],
+  created() {}
 };
 </script>
 
