@@ -27,7 +27,8 @@
             <font-awesome-icon :icon="['fas','caret-right']" class="dir-icon" />
           </button>
           <div class="image-title absolute" style="color:white;top:calc(72%);left:8%;">
-            <span>[</span>Correllian Scout
+            <span>[</span>
+            {{starship.name}}
             <span>]</span>
           </div>
         </template>
@@ -35,8 +36,8 @@
     </div>
     <div class="container mx-auto">
       <div class="mb-4 flex flex-col justify-center items-center">
-        <div class="ship-content font-sans w-1/2 sm:w-auto md:w-full lg:w-32 xl:w-2/4">
-          <h2 class="font-sans text-3xl text-gray-800">Correllian Scout</h2>
+        <div class="ship-content font-sans w-1/2 sm:w-auto md:w-full lg:w-3/5 xl:w-2/4">
+          <h2 class="font-sans text-3xl text-gray-800">{{starship.name}}</h2>
           <p
             class="font-sans text-base text-gray-800"
           >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis modi aliquam veniam? Totam quidem fugiat impedit excepturi minus iusto cupiditate quibusdam culpa, ab architecto. Sint beatae repellendus facere accusantium odit! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste vitae fugiat rerum sunt tempora qui suscipit eos cumque mollitia odit velit tenetur unde quae neque, doloribus inventore, quaerat perferendis laborum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, dolores fuga doloribus sequi modi labore voluptatem nobis a at aspernatur facilis sit aperiam dolorem vitae quos eum rerum necessitatibus nostrum!</p>
@@ -51,13 +52,14 @@
       <div class="recent-content w-full text-center">
         <button class="recent-view">Recently viewed Starships</button>
         <hr class="horizontal-line" />
-        <RecentStarship />
+        <RecentStarship v-bind:shipId="shipId" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 import RecentStarship from "../components/layouts/RecentStarship";
 export default {
   name: "SingleStarship",
@@ -65,7 +67,8 @@ export default {
   data() {
     return {
       shipId: this.$route.params.shipId,
-      info: {}
+      starship: {},
+      recentlyView: []
     };
   },
   methods: {
@@ -73,7 +76,32 @@ export default {
       return require("../assets/starship-" + pic + ".jpg");
     }
   },
-  created() {}
+  created() {
+    //Getting a single starship
+    axios
+      .get("https://swapi.co/api/starships/" + this.shipId)
+      .then(res => {
+        this.starship = { ...res.data };
+        let shipIdArray = [];
+        // check if recentlyView is available in local storage
+        if (!localStorage.getItem("recentlyView")) {
+          localStorage.setItem("recentlyView", JSON.stringify(shipIdArray));
+        }
+        // Retrieve the array from storage
+        let retrievedArray = JSON.parse(localStorage.getItem("recentlyView"));
+        if (retrievedArray.indexOf(this.shipId) < 0) {
+          if (retrievedArray.length >= 6) {
+            retrievedArray.shift();
+          }
+          if (retrievedArray.length < 6) {
+            retrievedArray.push(this.shipId);
+          }
+        }
+        localStorage.setItem("recentlyView", JSON.stringify(retrievedArray));
+      })
+      // eslint-disable-next-line
+      .catch(err => console.log(err));
+  }
 };
 </script>
 
@@ -123,13 +151,15 @@ div.image-title span {
   margin-bottom: 20px;
 }
 .ship-content p {
+  font-family: "Raleway";
   font-size: 18px;
   line-height: 1.8em;
   margin-top: 20px;
+  letter-spacing: 0.5px;
 }
 .recent-view {
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   color: #3e464c;
   border: 1px solid #c5c5c5;
@@ -138,6 +168,7 @@ div.image-title span {
   margin-top: 10px;
   margin-bottom: 10px;
   outline: none;
+  cursor: default;
 }
 .horizontal-line {
   border-color: #c5c5c5;
