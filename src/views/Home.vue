@@ -2,7 +2,7 @@
   <div id="app" class="w-full">
     <Banner />
     <div class="container mx-auto px-4" style="text-align: center">
-      <StarshipSection />
+      <StarshipSection v-bind:starships="starships" />
       <router-link to="starships">
         <button class="view-more">VIEW MORE</button>
       </router-link>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import Banner from "../components/layouts/Banner";
 import StarshipSection from "../components/layouts/Starship";
 import PlanetSection from "../components/layouts/Planet";
@@ -27,6 +28,22 @@ export default {
     StarshipSection,
     PlanetSection,
     CharacterSection
+  },
+  data() {
+    return {
+      starships: []
+    };
+  },
+  methods: {},
+  created() {
+    axios
+      .get("https://swapi.co/api/starships")
+      .then(res => {
+        this.starships = res.data.results;
+        this.starships.splice(6);
+      })
+      // eslint-disable-next-line
+      .catch(err => console.log(err));
   }
 };
 </script>
