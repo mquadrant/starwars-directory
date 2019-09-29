@@ -2,19 +2,21 @@
   <div>
     <Banner />
     <div class="container mx-auto px-4" style="text-align: center">
-      <StarshipSection v-bind:starships="visibleStarship" v-bind:currentPage="currentPage" />
+      <StarshipSection v-bind:starships="starships" />
       <Pagination
         v-bind:data="starships"
         v-bind:start="start"
+        v-bind:end="end"
         v-on:page:update="updatePage"
-        v-bind:currentPage="currentPage"
-        v-bind:pageSize="pageSize"
-        v-bind:visibleData="visibleStarship"
+        v-bind:count="count"
+        v-bind:next="next"
+        v-bind:previous="previous"
       />
     </div>
   </div>
 </template>
 <script>
+import axios from "axios";
 import Banner from "../components/layouts/Banner";
 import StarshipSection from "../components/layouts/Starship";
 import Pagination from "../components/Pagination";
@@ -23,109 +25,56 @@ export default {
   components: { Banner, StarshipSection, Pagination },
   data() {
     return {
-      starships: [
-        {
-          id: 0,
-          title: "Ghost 0",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-        },
-        {
-          id: 1,
-          title: "Ghost 1",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-        },
-        {
-          id: 2,
-          title: "Ghost 2",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-        },
-        {
-          id: 3,
-          title: "Ghost 3",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-        },
-        {
-          id: 4,
-          title: "Ghost 4",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-        },
-        {
-          id: 5,
-          title: "Ghost 5",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-        },
-        {
-          id: 6,
-          title: "Ghost 6",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-        },
-        {
-          id: 7,
-          title: "Ghost 7",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-        },
-        {
-          id: 8,
-          title: "Ghost 8",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-        },
-        {
-          id: 9,
-          title: "Ghost 9",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-        },
-        {
-          id: 10,
-          title: "Ghost 10",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-        },
-        {
-          id: 11,
-          title: "Ghost 11",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit."
-        }
-      ],
+      starships: [],
       currentPage: 0,
-      pageSize: 9,
-      start: 0,
-      visibleStarship: []
+      count: 0,
+      end: 0,
+      start: 1,
+      next: false,
+      previous: false
     };
   },
-  beforeMount: function() {
-    this.updateVisibleStarship();
-  },
   methods: {
-    nextPage() {
-      this.pageNumber++;
-    },
-    prevPage() {
-      this.pageNumber--;
-    },
-    updatePage(pageNumber) {
-      this.currentPage = pageNumber;
-      this.updateVisibleStarship();
-    },
-    updateVisibleStarship() {
-      this.start = this.currentPage * this.pageSize;
-      const end = this.start + this.pageSize;
-      this.visibleStarship = this.starships.slice(this.start, end);
-      //if we have 0 visible starship , go back a page
-      if (this.visibleStarship.length === 0 && this.currentPage > 0) {
-        this.updatePage(this.currentPage - 1);
+    updatePage(control) {
+      if (control === "next" && this.next) {
+        axios
+          .get(this.next)
+          .then(res => {
+            this.start = this.end + 1;
+            this.end += res.data.results.length;
+            this.next = res.data.next;
+            this.previous = res.data.previous;
+            this.starships = [...res.data.results];
+          })
+          // eslint-disable-next-line
+          .catch(err => console.log(err));
+      } else if (control === "previous" && this.previous) {
+        axios
+          .get(this.previous)
+          .then(res => {
+            this.end = this.start - 1;
+            this.start = this.end - res.data.results.length + 1;
+            this.next = res.data.next;
+            this.previous = res.data.previous;
+            this.starships = [...res.data.results];
+          })
+          // eslint-disable-next-line
+          .catch(err => console.log(err));
       }
     }
+  },
+  created() {
+    axios
+      .get("https://swapi.co/api/starships")
+      .then(res => {
+        this.count = res.data.count;
+        this.next = res.data.next;
+        this.previous = res.data.previous;
+        this.end = res.data.results.length;
+        this.starships = [...res.data.results];
+      })
+      // eslint-disable-next-line
+      .catch(err => console.log(err));
   }
 };
 </script>
