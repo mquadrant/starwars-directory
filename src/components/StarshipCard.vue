@@ -1,12 +1,14 @@
 <template>
   <div class="card">
-    <img src="./../assets/starship-2.jpg" alt="Ghost" style="width:100%; height:200px;" />
+    <img :src="getRandomImg()" alt="Random image" style="width:100%; height:200px;" />
     <div class="inner">
       <div class="outer">
-        <p class="title">{{starship.title}}</p>
-        <p class="description">{{starship.description}}</p>
+        <p class="title">{{starship.name}}</p>
+        <p
+          class="description"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique modi aperiam quia obcaecati odit pariatur inventore, ea amet laboriosam officiis.</p>
 
-        <router-link v-bind:to="'/starship/'+starship.id">
+        <router-link v-bind:to="'/starship/'+getId(starship.url)">
           <button>
             Read More &nbsp;
             <font-awesome-icon :icon="['fas','arrow-right']" class="search-icon" />
@@ -20,7 +22,20 @@
 <script>
 export default {
   name: "StarshipCard",
-  props: ["starship"]
+  props: ["starship"],
+  methods: {
+    getRandomImg() {
+      let randomInt = Math.floor(Math.random() * 6 + 1);
+      return require("../assets/starship-" + randomInt + ".jpg");
+    },
+    getId(url) {
+      var match = url.match(/(\d+)/);
+      if (match) {
+        var shipID = match[1];
+      }
+      return shipID;
+    }
+  }
 };
 </script>
 
@@ -50,11 +65,13 @@ export default {
 
 .title {
   color: #3e464c;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 400;
 }
 .description {
   color: #3e464c;
   font-size: 12px;
+  margin-top: 5px;
 }
 
 button {
