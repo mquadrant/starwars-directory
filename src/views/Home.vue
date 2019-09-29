@@ -10,7 +10,7 @@
       <router-link to="planets">
         <button class="view-more">VIEW MORE</button>
       </router-link>
-      <CharacterSection />
+      <CharacterSection v-bind:characters="characters" v-bind:isCharacterFetch="isCharacterFetch" />
       <router-link to="characters">
         <button class="view-more">VIEW MORE</button>
       </router-link>
@@ -36,7 +36,9 @@ export default {
     return {
       starships: [],
       planets: [],
-      isPlanetFetch: false
+      characters: [],
+      isPlanetFetch: false,
+      isCharacterFetch: false
     };
   },
   methods: {},
@@ -50,6 +52,7 @@ export default {
       })
       // eslint-disable-next-line
       .catch(err => console.log(err));
+
     //Getting Popular Planet
     axios
       .get("https://swapi.co/api/planets")
@@ -57,6 +60,17 @@ export default {
         this.planets = res.data.results;
         this.planets.splice(5);
         this.isPlanetFetch = true;
+      })
+      // eslint-disable-next-line
+      .catch(err => console.log(err));
+
+    //Getting Popular Characters
+    axios
+      .get("https://swapi.co/api/people")
+      .then(res => {
+        this.characters = res.data.results;
+        this.characters.splice(4);
+        this.isCharacterFetch = true;
       })
       // eslint-disable-next-line
       .catch(err => console.log(err));
