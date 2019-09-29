@@ -1,19 +1,30 @@
 <template>
-  <div class="planet-card">
-    <header>
-      <h1>Corellia</h1>
+  <div class="planet-card" :style="{'background-image': 'url(' + getRandomImg() + ')'}">
+    <header v-if="page">
+      <h1>Name: {{planet.name}}</h1>
+      <h1>Climate: {{planet.climate}}</h1>
+      <h1>Population: {{planet.population}}</h1>
+    </header>
+    <header v-if="!page">
+      <h1>{{planet.name}}</h1>
     </header>
   </div>
 </template>
 <script>
 export default {
-  name: "PlanetCard"
+  name: "PlanetCard",
+  props: ["planet", "page"],
+  methods: {
+    getRandomImg() {
+      let randomInt = Math.floor(Math.random() * 3 + 1);
+      return require("../assets/planet-" + randomInt + ".jpg");
+    }
+  }
 };
 </script>
 
 <style scoped>
 .planet-card {
-  background: url("../assets/planet-1.jpg");
   background-size: cover;
   width: 300px;
   height: 300px;
