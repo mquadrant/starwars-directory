@@ -27,14 +27,7 @@
           <CharacterCard />
         </div>
       </div>
-      <Pagination
-        v-bind:data="starships"
-        v-bind:start="start"
-        v-on:page:update="updatePage"
-        v-bind:currentPage="currentPage"
-        v-bind:pageSize="pageSize"
-        v-bind:visibleData="visibleStarship"
-      />
+      <Pagination v-bind:data="starships" v-bind:start="start" v-on:page:update="updatePage" />
     </div>
   </div>
 </template>
