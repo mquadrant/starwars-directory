@@ -26,6 +26,11 @@ export default new Router({
       path: "/starship/:shipId",
       name: "SingleStarship",
       component: () => import(/* webpackChunkName: "about" */ "./views/SingleStarship.vue")
+    },
+    {
+      path: "/planets",
+      name: "Planets",
+      component: () => import(/* webpackChunkName: "about" */ "./views/Planets.vue")
     }
   ]
 });
