@@ -1,10 +1,10 @@
 <template>
   <div class="section planet-section">
     <h2 class="section-title">Popular Planets</h2>
-    <div class="planet-cards">
-      <vue-glide :bullet="true" :rewind="false">
-        <vue-glide-slide v-for="i in 3" :key="i">
-          <PlanetCard />
+    <div class="planet-cards" v-if="isPlanetFetch">
+      <vue-glide :perView="3" :bullet="true" :bound="true" :rewind="false">
+        <vue-glide-slide v-for="planet in planets.length" :key="planet">
+          <PlanetCard v-bind:planet="planets[planet-1]" />
         </vue-glide-slide>
       </vue-glide>
     </div>
@@ -15,7 +15,8 @@
 import PlanetCard from "../PlanetCard";
 export default {
   name: "PlanetSection",
-  components: { PlanetCard }
+  components: { PlanetCard },
+  props: ["planets", "isPlanetFetch"]
 };
 </script>
 
