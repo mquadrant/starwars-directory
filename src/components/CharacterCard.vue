@@ -2,22 +2,17 @@
   <div class="card">
     <div class="row">
       <div class="row-item">
-        <div class="card-img-bottom"></div>
+        <div class="card-img-bottom" :style="{'background-image': 'url(' + imageUrl + ')'}"></div>
       </div>
       <div class="row-item">
         <div class="card-block">
-          <h4 class="card-title">Luke Skywalker</h4>
+          <h4 class="card-title">{{character.name}}</h4>
           <h6 class="card-subtitle">
-            <em>Son of Anakin</em>
+            <em>Gender: {{character.gender}}</em>
           </h6>
           <div class="card-text">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Sequi, magni. Omnis libero, repudiandae dolor aliquid aut aspernatur recusandae
-            aliquid aut aspernatur recusandae recusand...
-            <a
-              href="#"
-              class="card-readmore"
-            >Read More</a>
+            {{getDetails()}}
+            <a class="card-readmore" v-on:click="makeRead">{{readLabel}}</a>
           </div>
         </div>
       </div>
@@ -26,7 +21,51 @@
 </template>
 <script>
 export default {
-  name: "CharacterCard"
+  name: "CharacterCard",
+  props: ["character"],
+  data() {
+    return {
+      details: "",
+      readMore: true,
+      readLabel: "Read More",
+      imageOnce: false,
+      imageUrl: "../assets/character-0.jpg"
+    };
+  },
+  methods: {
+    getDetails() {
+      const msg = `${this.character.name} has a height of ${
+        this.character.height
+      } and a weight of ${this.character.mass}.
+    ${this.character.gender === "male" ? "He" : "She"} has a ${
+        this.character.skin_color
+      } skin and with ${this.character.eye_color} eyes. and was born on ${
+        this.character.birth_year
+      }. ${this.character.gender === "male" ? "He" : "She"} has ${
+        this.character.vehicles.length ? this.character.vehicles.length : "no"
+      } vehicle(s) and owned ${
+        this.character.starships.length ? this.character.starships.length : "no"
+      } starships. ${
+        this.character.gender === "male" ? "He" : "She"
+      } has been seen to have featured in ${
+        this.character.films.length ? this.character.films.length : "0"
+      } films.`;
+      if (this.readMore) {
+        this.readLabel = "Read More";
+        return `${msg.substring(0, 150)}...`;
+      } else {
+        this.readLabel = "Read Less";
+        return msg;
+      }
+    },
+    makeRead() {
+      this.readMore = !this.readMore;
+    }
+  },
+  created() {
+    let randomInt = Math.floor(Math.random() * 4 + 1);
+    this.imageUrl = require("../assets/character-" + randomInt + ".jpg");
+  }
 };
 </script>
 <style scoped>
