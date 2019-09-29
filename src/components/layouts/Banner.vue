@@ -16,14 +16,28 @@
       </p>
       <div class="input-icons">
         <font-awesome-icon :icon="['fas','search']" class="search-icon" />
-        <input class type="text" placeholder="Enter a search term" />
+        <input
+          class
+          type="text"
+          v-model="term"
+          @keyup="searchTerm()"
+          placeholder="Enter a search term"
+        />
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  name: "Banner"
+  name: "Banner",
+  data() {
+    return { term: "" };
+  },
+  methods: {
+    searchTerm() {
+      this.$emit("searchTerm", this.term);
+    }
+  }
 };
 </script>
 
