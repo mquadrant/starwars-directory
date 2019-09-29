@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Banner />
+    <Banner v-on:searchTerm="searchTerm" />
     <div class="container mx-auto px-4" style="text-align: center">
       <div class="section starship-section">
         <h2 class="section-title">Popular Planets</h2>
@@ -8,7 +8,7 @@
           <PlanetCard
             v-bind:planet="planet"
             v-bind:key="planet.name"
-            v-for="planet in planets"
+            v-for="planet in filterPlanets"
             v-bind:page="page"
           />
         </div>
@@ -36,15 +36,25 @@ export default {
   data() {
     return {
       planets: [],
+      filterPlanets: [],
       count: 0,
       end: 0,
       start: 1,
       next: false,
       previous: false,
-      page: true
+      page: true,
+      searching: ""
     };
   },
   methods: {
+    searchTerm(term) {
+      this.searching = term;
+      let re = new RegExp(this.searching, "gi");
+
+      this.filterPlanets = this.planets.filter(planet => {
+        return re.test(planet.name) || re.test(planet.climate);
+      });
+    },
     updatePage(control) {
       if (control === "next" && this.next) {
         axios
@@ -55,6 +65,7 @@ export default {
             this.next = res.data.next;
             this.previous = res.data.previous;
             this.planets = [...res.data.results];
+            this.searchTerm(this.searching);
           })
           // eslint-disable-next-line
           .catch(err => console.log(err));
@@ -67,6 +78,7 @@ export default {
             this.next = res.data.next;
             this.previous = res.data.previous;
             this.planets = [...res.data.results];
+            this.searchTerm(this.searching);
           })
           // eslint-disable-next-line
           .catch(err => console.log(err));
@@ -82,6 +94,7 @@ export default {
         this.previous = res.data.previous;
         this.end = res.data.results.length;
         this.planets = [...res.data.results];
+        this.filterPlanets = [...this.planets];
       })
       // eslint-disable-next-line
       .catch(err => console.log(err));
