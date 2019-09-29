@@ -6,7 +6,7 @@
         <p class="title">{{starship.name}}</p>
         <p
           class="description"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique modi aperiam quia obcaecati odit pariatur inventore, ea amet laboriosam officiis.</p>
+        >These vessels are manufactured by the Corellian Engineering Corporation. While the CR90 would see initial use within the late Galactic Republic.</p>
 
         <router-link v-bind:to="'/starship/'+getId(starship.url)">
           <button>
