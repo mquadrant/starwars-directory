@@ -1,17 +1,17 @@
 <template>
-  <div v-if="totalPages() > 0" class="pagination-wrapper">
-    {{start}} - {{start+visibleData.length}} of {{data.length}}&nbsp;
+  <div class="pagination-wrapper">
+    {{start}} - {{end}} of {{count}}&nbsp;
     <div class="pagination-item">
       <span
         v-bind:class="{'link-end':!showPreviousLink()}"
-        v-on:click="updatePage(currentPage - 1)"
+        v-on:click="updatePage('previous')"
         class="pagination-btn"
       >
         <font-awesome-icon :icon="['fas','chevron-left']" class="page-arrow" />
       </span>
       <span
         v-bind:class="{'link-end':!showNextLink()}"
-        v-on:click="updatePage(currentPage + 1)"
+        v-on:click="updatePage('next')"
         class="pagination-btn right"
       >
         <font-awesome-icon :icon="['fas','chevron-right']" class="page-arrow" />
@@ -22,19 +22,16 @@
 <script>
 export default {
   name: "Pagination",
-  props: ["data", "currentPage", "pageSize", "visibleData", "start", "end"],
+  props: ["data", "start", "end", "count", "next", "previous"],
   methods: {
-    updatePage(pageNumber) {
-      this.$emit("page:update", pageNumber);
-    },
-    totalPages() {
-      return Math.ceil(this.data.length / this.pageSize);
+    updatePage(control) {
+      this.$emit("page:update", control);
     },
     showPreviousLink() {
-      return this.currentPage == 0 ? false : true;
+      return this.previous === null ? false : true;
     },
     showNextLink() {
-      return this.currentPage == this.totalPages() - 1 ? false : true;
+      return this.next === null ? false : true;
     }
   }
 };
