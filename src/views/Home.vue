@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="w-full">
-    <Banner />
+    <Banner v-bind:home="true" />
     <div class="container mx-auto px-4" style="text-align: center">
       <StarshipSection v-bind:starships="starships" />
       <router-link to="starships">
