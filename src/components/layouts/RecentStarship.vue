@@ -1,7 +1,14 @@
 <template>
   <div class="section planet-section">
-    <div class="StarshipCard" v-if="isDataFetch">
+    <div class="StarshipCard image--lg" v-if="isDataFetch">
       <vue-glide :perView="3" :bullet="true" :bound="true" :rewind="false">
+        <vue-glide-slide v-for="starship in shipsLength" :key="starship">
+          <StarshipCard v-bind:starship="starships[starship-1]" />
+        </vue-glide-slide>
+      </vue-glide>
+    </div>
+    <div class="StarshipCard image--sm" v-if="isDataFetch">
+      <vue-glide :perView="1" :bullet="true" :bound="true" :rewind="false">
         <vue-glide-slide v-for="starship in shipsLength" :key="starship">
           <StarshipCard v-bind:starship="starships[starship-1]" />
         </vue-glide-slide>
