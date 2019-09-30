@@ -41,6 +41,7 @@ export default {
 .pagination-wrapper {
   font-size: 18px;
   color: #757575;
+  margin-bottom: 30px;
 }
 .pagination-item {
   display: inline-block;
