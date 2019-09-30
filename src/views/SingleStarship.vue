@@ -18,7 +18,7 @@
           <button data-glide-dir=">" class="control-right absolute border-4 rounded-full h-16 w-16">
             <font-awesome-icon :icon="['fas','caret-right']" class="dir-icon" />
           </button>
-          <div class="ship-label image-title absolute" style="color:white;">
+          <div class="ship-label image-title" style="color:white;">
             <span>[</span>
             {{starship.name}}
             <span>]</span>
@@ -124,6 +124,7 @@ export default {
   font-size: 32px;
 }
 div.image-title {
+  position: absolute;
   font-size: 34px;
   font-weight: 600;
 }
@@ -178,9 +179,12 @@ div.image-title span {
 }
 .ship-label {
   top: calc(72%);
-  left: 8%;
+  left: 0;
 }
 @media (max-width: 800px) {
+  div.image-title {
+    font-size: 26px;
+  }
   .control-left {
     top: calc(86%);
     right: calc(50% - -16px);
@@ -191,11 +195,16 @@ div.image-title span {
   }
   .ship-label {
     top: calc(68%);
-    left: calc(50% - 115px);
+    /*left: calc(50% - 115px);*/
   }
   .recent-view {
     font-size: 14px;
     width: 250px;
+  }
+  .ship-label.image-title {
+    width: 100%;
+    display: block;
+    text-align: center;
   }
 }
 </style>
