@@ -122,4 +122,15 @@ export default {
 .card-list .card-text {
   width: 450px;
 }
+@media (max-width: 800px) {
+  .card-block {
+    width: 180px;
+  }
+  .card-img-bottom {
+    width: 150px;
+  }
+  .card-text {
+    width: 160px;
+  }
+}
 </style>
