@@ -14,28 +14,19 @@
         Find your favorite Characters, Films, Species,
         <br />Starships and Planets
       </p>
-      <div class="input-icons">
-        <font-awesome-icon :icon="['fas','search']" class="search-icon" />
-        <input
-          class
-          type="text"
-          v-model="term"
-          @keyup="searchTerm()"
-          placeholder="Enter a search term"
-        />
-      </div>
+      <SearchBar v-bind:home="home" v-on:searchTerm="searchTerm" v-bind:search="search" />
     </div>
   </div>
 </template>
 <script>
+import SearchBar from "./SearchBar";
 export default {
   name: "Banner",
-  data() {
-    return { term: "" };
-  },
+  components: { SearchBar },
+  props: ["home", "search"],
   methods: {
-    searchTerm() {
-      this.$emit("searchTerm", this.term);
+    searchTerm(term) {
+      this.$emit("searchTerm", term);
     }
   }
 };
@@ -80,33 +71,6 @@ export default {
 }
 .content-logo span {
   margin-left: 10px;
-}
-input[type="text"] {
-  padding: 6px;
-  padding-bottom: 8px;
-  padding-left: 80px;
-  width: 500px;
-  color: #000;
-  background: #faf8f7;
-  border-radius: 5px;
-  outline: none;
-}
-input[type="text"]::placeholder {
-  font-size: 13px;
-  color: #3e464c;
-}
-.input-icons {
-  position: relative;
-  width: 100%;
-  margin-bottom: 10px;
-}
-.input-icons .search-icon {
-  position: absolute;
-  color: #3e464c;
-  font-size: 18px;
-  font-weight: 0px;
-  bottom: 10px;
-  left: 40px;
 }
 
 .icon {
