@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Banner v-on:searchTerm="searchTerm" />
+    <Banner v-on:searchTerm="searchTerm" v-bind:search="search" />
     <div class="container mx-auto px-4" style="text-align: center">
       <div class="section starship-section">
         <h2 class="section-title">Popular Planets</h2>
@@ -43,7 +43,8 @@ export default {
       next: false,
       previous: false,
       page: true,
-      searching: ""
+      searching: "",
+      search: ""
     };
   },
   methods: {
@@ -86,6 +87,10 @@ export default {
     }
   },
   created() {
+    //get search if coming from home page
+    if (this.$route.query.search) {
+      this.search = this.$route.query.search;
+    }
     axios
       .get("https://swapi.co/api/planets")
       .then(res => {
@@ -95,6 +100,7 @@ export default {
         this.end = res.data.results.length;
         this.planets = [...res.data.results];
         this.filterPlanets = [...this.planets];
+        this.searchTerm(this.search);
       })
       // eslint-disable-next-line
       .catch(err => console.log(err));
