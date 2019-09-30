@@ -17,15 +17,16 @@
           </div>
           <div class="filter-item" style="margin-left:60px;">
             <label>VIEW</label>
-            <select name="viewlist">
+            <select v-model="view" name="viewlist" @change="changeView">
               <option value="grid">Grid</option>
               <option value="list">List</option>
             </select>
             <font-awesome-icon :icon="['fas','sort-down']" class="select-arrow" />
           </div>
         </div>
-        <div class="character-cards">
+        <div class="character-cards" v-bind:class="{'is-list':viewList}">
           <CharacterCard
+            v-bind:viewList="viewList"
             v-bind:character="character"
             v-bind:key="character.name"
             v-for="character in filterCharacters"
@@ -64,10 +65,19 @@ export default {
       previous: false,
       page: true,
       gender: "all",
-      search: ""
+      search: "",
+      viewList: false,
+      view: "grid"
     };
   },
   methods: {
+    changeView() {
+      if (this.view === "list") {
+        this.viewList = true;
+      } else {
+        this.viewList = false;
+      }
+    },
     searchTerm(term) {
       this.filterlist(term);
     },
@@ -164,6 +174,9 @@ export default {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 10px;
+}
+.is-list {
+  flex-direction: column;
 }
 
 .filter-block {

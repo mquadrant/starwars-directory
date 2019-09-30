@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" v-bind:class="{'card-list':viewList}">
     <div class="row">
       <div class="row-item">
         <div class="card-img-bottom" :style="{'background-image': 'url(' + imageUrl + ')'}"></div>
@@ -22,7 +22,7 @@
 <script>
 export default {
   name: "CharacterCard",
-  props: ["character"],
+  props: ["character", "viewList"],
   data() {
     return {
       details: "",
@@ -111,5 +111,15 @@ export default {
   font-size: 12px;
   font-weight: 600;
   border-bottom: 1px solid #3e464c;
+}
+.card-list .card-img-bottom,
+.card-list {
+  height: 12rem;
+}
+.card-list .card-block {
+  width: 500px;
+}
+.card-list .card-text {
+  width: 450px;
 }
 </style>
