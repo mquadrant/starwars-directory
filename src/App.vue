@@ -1,28 +1,58 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="w-full">
+    <router-view :key="$route.fullPath" />
+
+    <Footer />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Footer from "./components/layouts/Footer";
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    HelloWorld
+    Footer
   }
-}
+};
 </script>
 
+<style src="./css/main.css"/>
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.section {
+  margin-top: 50px;
+  margin-bottom: 20px;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+.section .section-title {
+  font-size: 24px;
+  color: #3e464c;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+}
+h2.section-title {
+  display: inline-block;
+  padding-bottom: 8px;
+  position: relative;
+  margin: 0 auto;
+}
+h2.section-title:before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 2px;
+  bottom: 0;
+  left: 25%;
+  border-bottom: 4px solid #3e464c;
+}
+button,
+button:focus {
+  outline: none;
 }
 </style>
