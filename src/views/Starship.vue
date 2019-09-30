@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Banner v-on:searchTerm="searchTerm" />
+    <Banner v-on:searchTerm="searchTerm" v-bind:search="search" />
     <div class="container mx-auto px-4" style="text-align: center">
       <StarshipSection v-bind:starships="filterShips" />
       <Pagination
@@ -33,7 +33,8 @@ export default {
       start: 1,
       next: false,
       previous: false,
-      searching: ""
+      searching: "",
+      search: ""
     };
   },
   methods: {
@@ -76,6 +77,10 @@ export default {
     }
   },
   created() {
+    //get search if coming from home page
+    if (this.$route.query.search) {
+      this.search = this.$route.query.search;
+    }
     axios
       .get("https://swapi.co/api/starships")
       .then(res => {
@@ -85,6 +90,7 @@ export default {
         this.end = res.data.results.length;
         this.starships = [...res.data.results];
         this.filterShips = [...this.starships];
+        this.searchTerm(this.search);
       })
       // eslint-disable-next-line
       .catch(err => console.log(err));
