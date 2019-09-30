@@ -11,22 +11,14 @@
           <img :src="getImgUrl(pic)" v-bind:alt="pic" class="img-slide" />
         </vue-glide-slide>
 
-        <template slot="control">
-          <button
-            data-glide-dir="<"
-            class="absolute border-4 rounded-full h-16 w-16"
-            style="top:calc(72%);right:9%"
-          >
+        <template slot="control" class="control">
+          <button data-glide-dir="<" class="control-left absolute border-4 rounded-full h-16 w-16">
             <font-awesome-icon :icon="['fas','caret-left']" class="dir-icon" />
           </button>
-          <button
-            data-glide-dir=">"
-            class="absolute border-4 rounded-full h-16 w-16"
-            style="top:calc(72%);right:20px;"
-          >
+          <button data-glide-dir=">" class="control-right absolute border-4 rounded-full h-16 w-16">
             <font-awesome-icon :icon="['fas','caret-right']" class="dir-icon" />
           </button>
-          <div class="image-title absolute" style="color:white;top:calc(72%);left:8%;">
+          <div class="ship-label image-title absolute" style="color:white;">
             <span>[</span>
             {{starship.name}}
             <span>]</span>
@@ -100,7 +92,7 @@ export default {
         localStorage.setItem("recentlyView", JSON.stringify(retrievedArray));
       })
       // eslint-disable-next-line
-      .catch(err => console.log(err));
+      .catch(err => this.$router.push("/404"));
   }
 };
 </script>
@@ -164,7 +156,7 @@ div.image-title span {
   color: #3e464c;
   border: 1px solid #c5c5c5;
   padding: 20px;
-  width: 30%;
+  width: 350px;
   margin-top: 10px;
   margin-bottom: 10px;
   outline: none;
@@ -175,5 +167,35 @@ div.image-title span {
 }
 .recent-content {
   margin-top: 90px;
+}
+.control-left {
+  top: calc(72%);
+  right: calc(9% - -25px);
+}
+.control-right {
+  top: calc(72%);
+  right: 20px;
+}
+.ship-label {
+  top: calc(72%);
+  left: 8%;
+}
+@media (max-width: 800px) {
+  .control-left {
+    top: calc(86%);
+    right: calc(50% - -16px);
+  }
+  .control-right {
+    top: calc(86%);
+    right: calc(50% - 78px);
+  }
+  .ship-label {
+    top: calc(68%);
+    left: calc(50% - 115px);
+  }
+  .recent-view {
+    font-size: 14px;
+    width: 250px;
+  }
 }
 </style>

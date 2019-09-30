@@ -30,6 +30,7 @@ export default {
   height: 300px;
   position: relative;
   margin: 20px;
+  display: inline-block;
 }
 .planet-card > header {
   position: absolute;

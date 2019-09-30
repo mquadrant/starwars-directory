@@ -83,17 +83,17 @@ input[type="text"]::placeholder {
   color: #3e464c;
   font-size: 18px;
   font-weight: 0px;
-  bottom: 10px;
+  bottom: 25%;
   left: 40px;
   cursor: pointer;
 }
 .filter-item {
   position: absolute;
-  border: 1px solid #3e464c;
+  border: 1px solid #52585d;
   border-radius: 5px;
   color: #3e464c;
   font-size: 18px;
-  bottom: 5px;
+  bottom: 12%;
   right: 10px;
   outline: none;
 }
@@ -102,5 +102,10 @@ input[type="text"]::placeholder {
   outline: none;
   padding-left: 3px;
   font-size: 12px;
+}
+@media (max-width: 800px) {
+  input[type="text"] {
+    width: 350px;
+  }
 }
 </style>

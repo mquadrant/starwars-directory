@@ -89,5 +89,11 @@ export default {
   margin-top: 10px;
   margin-bottom: 10px;
   outline: none;
+  cursor: pointer;
+}
+@media (max-width: 800px) {
+  .view-more {
+    width: 130px;
+  }
 }
 </style>
