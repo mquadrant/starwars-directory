@@ -7,6 +7,9 @@
           <div class="text">Page not found</div>
           <div class="text">This may not mean anything.</div>
           <div class="text">I'm probably working on something that has blown up.</div>
+          <router-link to="/">
+            <button>Go Home</button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -59,5 +62,11 @@ export default {
 #countUp .text {
   font-weight: 300;
   text-align: center;
+}
+#countUp button {
+  border: 1px solid #fff;
+  border-radius: 10px;
+  padding: 10px 40px;
+  font-size: 12px;
 }
 </style>
