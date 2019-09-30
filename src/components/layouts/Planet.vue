@@ -35,4 +35,20 @@ export default {
   justify-content: center;
   align-items: center;
 }
+@media (max-width: 1000px) {
+  .image--sm {
+    display: block;
+  }
+  .image--lg {
+    display: none;
+  }
+}
+@media (min-width: 1001px) {
+  .image--sm {
+    display: none;
+  }
+  .image--lg {
+    display: block;
+  }
+}
 </style>
