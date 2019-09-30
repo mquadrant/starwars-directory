@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Banner v-on:searchTerm="searchTerm" />
+    <Banner v-on:searchTerm="searchTerm" v-bind:search="search" />
     <div class="container mx-auto px-4" style="text-align: center">
       <div class="section character-section">
         <h2 class="section-title">Popular Characters</h2>
@@ -63,7 +63,8 @@ export default {
       next: false,
       previous: false,
       page: true,
-      gender: "all"
+      gender: "all",
+      search: ""
     };
   },
   methods: {
@@ -137,6 +138,10 @@ export default {
     }
   },
   created() {
+    //get search if coming from home page
+    if (this.$route.query.search) {
+      this.search = this.$route.query.search;
+    }
     axios
       .get("https://swapi.co/api/people")
       .then(res => {
@@ -146,6 +151,7 @@ export default {
         this.end = res.data.results.length;
         this.characters = [...res.data.results];
         this.filterCharacters = [...this.characters];
+        this.searchTerm(this.search);
       })
       // eslint-disable-next-line
       .catch(err => console.log(err));
