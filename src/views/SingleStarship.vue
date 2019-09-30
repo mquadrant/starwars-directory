@@ -92,7 +92,7 @@ export default {
         localStorage.setItem("recentlyView", JSON.stringify(retrievedArray));
       })
       // eslint-disable-next-line
-      .catch(err => (window.location.href = "/my-new-404-page.html"));
+      .catch(err => this.$router.push("/404"));
   }
 };
 </script>
