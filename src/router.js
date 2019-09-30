@@ -31,6 +31,7 @@ export default new Router({
       path: "/planets",
       name: "Planets",
       component: () => import(/* webpackChunkName: "about" */ "./views/Planets.vue")
-    }
+    },
+    { path: "*", component: () => import(/* webpackChunkName: "about" */ "./views/NotFound.vue") }
   ]
 });
